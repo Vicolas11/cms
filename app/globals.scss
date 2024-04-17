@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.loader {
+  @apply fixed top-0 left-0 bg-[rgba(0,0,0,.2)];
+  @apply flex justify-center items-center;
+}

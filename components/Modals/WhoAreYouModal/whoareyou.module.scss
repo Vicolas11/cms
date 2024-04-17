@@ -1,0 +1,17 @@
+.modal {
+  @apply w-[30%];
+
+  .container {
+    h4 {
+      @apply text-btnHoverColor1 font-bold text-lg text-center mb-2;
+    }
+
+    .btn_wrapper {
+      @apply flex justify-center;
+
+      .continueBtn {
+        @apply hover:bg-prmColor hover:text-orange-100;
+      }
+    }
+  }
+}

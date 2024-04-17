@@ -1,0 +1,15 @@
+.h1 {
+  @apply text-primary p-0 m-0;
+}
+
+.large {
+  @apply text-xl md:text-6xl font-extrabold;
+}
+
+.medium {
+  @apply text-xl font-bold;
+}
+
+.small {
+  @apply text-lg font-normal;
+}

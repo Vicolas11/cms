@@ -1,0 +1,33 @@
+.form {
+  @apply mx-auto w-11/12 lg:w-10/12 2xl:w-7/12 bg-white px-4 py-6;
+  @apply flex flex-col gap-y-4 shadow-md;
+  box-shadow: 1px 1px 10px rgba(#000000, 0.1);
+
+  .titleContainer {
+    @apply text-center;
+  }
+
+  .title {
+    @apply text-gray-3 font-black text-xl;
+  }
+
+  .lineContainer {
+    @apply text-center w-full relative;
+
+    h3 {
+      @apply font-bold text-gray-400;
+      @apply before:border-t before:flex before:absolute before:border-gray-400;
+      @apply before:w-[45%] before:translate-y-[-50%] before:top-1/2 before:px-5;
+      @apply after:border-t after:flex after:absolute after:border-gray-400;
+      @apply after:w-[45%] after:translate-y-[-50%] after:top-1/2 after:right-0;
+    }
+  }
+
+  p {
+    @apply text-gray-400 font-medium text-base text-center;
+
+    button {
+      @apply font-extrabold text-gray-500 hover:text-gray-600;
+    }
+  }
+}
