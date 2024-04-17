@@ -2,12 +2,11 @@ import Select, {
   ActionMeta,
   DropdownIndicatorProps,
   MenuListProps,
-  SelectOptionActionMeta,
   components,
 } from "react-select";
 import { ICustomSelect, IOpt } from "../../interfaces/props.interface";
 import { FiChevronUp, FiChevronDown } from "react-icons/fi";
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactNode } from "react";
 import { selectStyles } from "@/utils/select.styles.util";
 
 export default function CustomSelect({
