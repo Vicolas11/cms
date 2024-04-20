@@ -34,3 +34,20 @@ export const isValidAll = (value: string, type: string) => {
   }
   return result;
 };
+
+export const isValidCheck = (name: string, value: string, inputValue: any) => {
+  let isValid = false;
+  switch (name) {
+    case "New Password":
+      isValid = value.length < 6;
+      break;
+    case "Confirm Password":
+      isValid = value !== inputValue["New Password"];
+      break;
+    default:
+      isValid = false;
+      break;
+  }
+
+  return isValid;
+};
