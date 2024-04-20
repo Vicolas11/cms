@@ -1,12 +1,11 @@
-import Image from "next/image";
-import styles from "./home.module.scss";
 import { LoginForm } from "@/components/LoginForm";
-import { Navbar } from "@/components/Navbar";
+import AuthLayout from "@/components/AuthLayout";
+import styles from "./home.module.scss";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className={styles.home}>
-      <Navbar />
+    <AuthLayout>
       <div className={styles.container}>
         <div className={styles.title}>
           <div className={styles.imgContainer}>
@@ -21,7 +20,6 @@ export default function Home() {
           <LoginForm />
         </div>
       </div>
-      <div></div>
-    </div>
+    </AuthLayout>
   );
 }

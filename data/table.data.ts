@@ -1,11 +1,26 @@
 export const tableInfo = {
-  head: ["#", "DISPLAY NAME", "Medal", "SCORE", "TIME"],
+  head: ["#", "SUBJECT", "COMPLAINT", "REPORTED TO", "REPLIED", "DATE", ""],
   body: [
-    ["1", "Vicolas", "", "2256", "2 Days Ago"],
-    ["2", "Gloria", "", "1356", "1 Hour Ago"],
-    ["3", "Josiah", "", "1216", "2 Month Ago"],
-    ["4", "Lil Kesh", "", "1145", "2 Days Ago"],
-    ["5", "Don Razzy", "", "1120", "3 Mins Ago"],
-    ["6", "WizTech", "", "1091", "5 Days Ago"],
+    {
+      id: "67895673",
+      subject: "Broken Desk",
+      complaint: "The desk in LR2 is broken for more than two weeks now",
+      reportedTo: "Student Affairs",
+      replied: false,
+      date: "2 Days Ago",
+      response: "",
+      isRead: true
+    },
+    {
+      id: "66394567",
+      subject: "Lecturers Absence",
+      complaint:
+        "Lecturers not coming for lectures. Since the beginning of this first semester",
+      reportedTo: "HOD (Dept)",
+      replied: true,
+      date: "3 Days Ago",
+      response: "I will see to that. Thanks for reaching out.",
+      isRead: false
+    },
   ],
 };

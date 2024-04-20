@@ -20,20 +20,25 @@ export interface ICustomSelect {
   name?: string;
 }
 
-export type Trow = string | number | boolean;
+export type dataType = string | number | boolean;
+
+export type Trow = {
+  [key: string]: dataType;
+};
 
 export interface TableProps {
   title: string;
   isCustomTr?: boolean;
   showFilter?: boolean;
   tableDataElem?: (
-    row: Trow[],
-    data: Trow,
+    id: dataType,
+    row: dataType[],
+    data: dataType,
     colIndex: number,
     rowIndex: number
   ) => ReactElement<HTMLTableCellElement>;
   theadData: string[];
-  tbodyData: Trow[][];
+  tbodyData: Trow[];
   totalResults: number;
   resultsPerPage: number;
   maxVisiblePages: number;
@@ -43,4 +48,15 @@ export interface TableProps {
   showLoader?: boolean;
   isError?: boolean;
   errMsg?: string;
+  getUniqIdCallback?: (id: dataType) => void;
+  keysToRemove?: string[]; 
+}
+
+interface Detail {
+  [key: string]: string | boolean
+}
+
+export interface ViewModalProps {
+  showModal: string | null;
+  detail: Detail | undefined;
 }

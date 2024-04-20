@@ -13,3 +13,7 @@ export interface InputValueType {
 export interface InputIsValidType {
   [key: string]: boolean;
 }
+
+export interface DetailType {
+  [key: string]: string | boolean;
+}

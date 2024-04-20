@@ -1,6 +1,7 @@
 import StoreProvider from "./store/StoreProvider";
 import { Roboto } from "next/font/google";
 import type { Metadata } from "next";
+import { ReactNode } from "react";
 import "./globals.scss";
 
 const roboto = Roboto({
@@ -18,13 +19,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
+  modal: ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          {children}
+          {modal}
+        </StoreProvider>
       </body>
     </html>
   );
