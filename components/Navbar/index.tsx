@@ -1,22 +1,22 @@
 "use client";
-import styles from "./navbar.module.scss";
-import Image from "next/image";
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useAppSelector } from "@/app/store/store";
-import { FaUserCircle } from "react-icons/fa";
 import { RiArrowDropDownFill, RiArrowDropUpFill } from "react-icons/ri";
 import { AnimatePresence, motion } from "framer-motion";
+import { navbarAnimate } from "@/data/animation.data";
+import { useAppSelector } from "@/app/store/store";
+import { shrinkTxt } from "@/utils/shrink.utils";
+import { bubbleText } from "@/utils/bubble.util";
+import { FaUserCircle } from "react-icons/fa";
+import { Suspense, useEffect, useState } from "react";
+import { IoMdLogOut } from "react-icons/io";
+import styles from "./navbar.module.scss";
 import { MdClose } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
-import { useState } from "react";
-import { IoMdLogOut } from "react-icons/io";
-import { shrinkTxt } from "@/utils/shrink.utils";
-import { navbarAnimate } from "@/data/animation.data";
-
-const width = window.innerWidth;
+import Image from "next/image";
+import Link from "next/link";
 
 export const Navbar = () => {
+  const [width, setWidth] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
   const { isAuth } = useAppSelector((state) => state.auth);
   const searchParams = useSearchParams();
@@ -70,78 +70,112 @@ export const Navbar = () => {
     </div>
   );
 
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, []);
+
   return (
     <>
-      <nav className={styles.navbar}>
-        <div className={styles.container}>
-          <Link href="/">
-            <div className={styles.navLogo}>
-              <Image src="/logo.png" alt="Logo" fill />
-            </div>
-          </Link>
-
-          {/* Show on desktop Screen */}
-          <ul className={styles.navLink}>
-            {linksArr.map((lnk, idx) => {
-              const lstIdx = linksArr.length - 1;
-              return (
-                <li
-                  key={idx}
-                  className={`${
-                    idx !== lstIdx
-                      ? pathname === lnk.pathname
-                        ? styles.active
-                        : ""
-                      : ""
-                  } ${idx === lstIdx && !isAuth ? styles.lastLi : ""}`}
-                >
-                  {idx === lstIdx && isAuth
-                    ? profileContainer("desktop")
-                    : lnk.show && (
-                        <Link href={lnk.pathname} prefetch={false}>
-                          {lnk.title}
-                        </Link>
-                      )}
-                </li>
-              );
-            })}
-
-            {/* Desktop Logout Button */}
-            {showLogout && (
-              <div className={styles.logout}>
-                <IoMdLogOut size={20} /> Logout
+      <Suspense>
+        <nav className={styles.navbar}>
+          <div className={styles.container}>
+            <Link href="/">
+              <div className={styles.navLogo}>
+                <Image src="/logo.png" alt="Logo" fill />
               </div>
-            )}
-          </ul>
+            </Link>
 
-          {/* Show Menu on Mobile Screen */}
-          {isAuth ? (
-            profileContainer("mobile")
-          ) : (
-            <span
-              className={styles.btnMenu}
-              onClick={() => setShowMenu(!showMenu)}
-            >
-              {showMenu ? <MdClose size={30} /> : <IoMenu size={30} />}
-            </span>
-          )}
-          <AnimatePresence mode="wait">
-            {showMenu && (
-              <motion.ul
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                variants={navbarAnimate}
-                className={styles.mobileNavLink}
+            {/* Show on desktop Screen */}
+            <ul className={styles.navLink}>
+              {linksArr.map(({ pathname: pth, title, show }, idx) => {
+                const lstIdx = linksArr.length - 1;
+                return (
+                  <li
+                    key={idx}
+                    className={`${
+                      idx !== lstIdx
+                        ? pathname === pth
+                          ? styles.active
+                          : ""
+                        : ""
+                    } ${idx === lstIdx && !isAuth ? styles.lastLi : ""}`}
+                  >
+                    {idx === lstIdx && isAuth
+                      ? profileContainer("desktop")
+                      : show && (
+                          <Link href={pth} prefetch={false}>
+                            {title === "Complaints" ? (
+                              <span className={styles.complaints}>
+                                {title}
+                                <span className={styles.bubble}>
+                                  {bubbleText("4")}
+                                </span>
+                              </span>
+                            ) : (
+                              title
+                            )}
+                          </Link>
+                        )}
+                  </li>
+                );
+              })}
+
+              {/* Desktop Logout Button */}
+              {showLogout && (
+                <div className={styles.logout}>
+                  <IoMdLogOut size={20} /> Logout
+                </div>
+              )}
+            </ul>
+
+            {/* Show Menu on Mobile Screen */}
+            {isAuth ? (
+              profileContainer("mobile")
+            ) : (
+              <span
+                className={styles.btnMenu}
+                onClick={() => setShowMenu(!showMenu)}
               >
-                {linksArr.map(
-                  ({ show, title }, idx) => show && <li key={idx}>{title}</li>
-                )}
-              </motion.ul>
+                {showMenu ? <MdClose size={30} /> : <IoMenu size={30} />}
+              </span>
             )}
-          </AnimatePresence>
-        </div>
-      </nav>
+            <AnimatePresence mode="wait">
+              {showMenu && (
+                <motion.ul
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                  variants={navbarAnimate}
+                  className={styles.mobileNavLink}
+                >
+                  {linksArr.map(
+                    ({ show, title, pathname: pth }, idx) =>
+                      show && (
+                        <li
+                          key={idx}
+                          className={pathname === pth ? styles.active : ""}
+                        >
+                          <Link href={pth} prefetch={false}>
+                            {title === "Complaints" ? (
+                              <span className={styles.complaints}>
+                                {title}{" "}
+                                <span className={styles.bubble}>
+                                  {bubbleText("3")}
+                                </span>
+                              </span>
+                            ) : (
+                              title
+                            )}
+                          </Link>
+                        </li>
+                      )
+                  )}
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </div>
+        </nav>
+      </Suspense>
     </>
   );
 };

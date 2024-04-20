@@ -1,13 +1,15 @@
+import { ICustomSelect, IOpt } from "../../interfaces/props.interface";
+import { FiChevronUp, FiChevronDown } from "react-icons/fi";
+import { useEffect, useState, ComponentType } from "react";
+import { selectStyles } from "@/utils/select.styles.util";
 import Select, {
   ActionMeta,
   DropdownIndicatorProps,
+  GroupBase,
   MenuListProps,
   components,
 } from "react-select";
-import { ICustomSelect, IOpt } from "../../interfaces/props.interface";
-import { FiChevronUp, FiChevronDown } from "react-icons/fi";
-import { useEffect, useState, ReactNode } from "react";
-import { selectStyles } from "@/utils/select.styles.util";
+
 
 export default function CustomSelect({
   options,
@@ -79,7 +81,14 @@ export default function CustomSelect({
       options={
         options && options.sort((a, b) => a.label.localeCompare(b.label))
       }
-      components={{ DropdownIndicator, MenuList }}
+      components={{
+        DropdownIndicator: DropdownIndicator as ComponentType<
+          DropdownIndicatorProps<IOpt, boolean, GroupBase<IOpt>>
+        >,
+        MenuList: MenuList as ComponentType<
+          MenuListProps<IOpt, boolean, GroupBase<IOpt>>
+        >,
+      }}
       value={value}
       name={name}
       isClearable
