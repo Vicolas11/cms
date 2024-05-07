@@ -13,7 +13,7 @@ export const isValidFullName = (value: string) => {
   return fullNameRegex.test(value);
 };
 
-export const isValidAll = (value: string, type: string) => {
+export const isValidAll = (value: string, type: string, password?: string) => {
   let result = false;
   switch (type) {
     case "email":
@@ -21,6 +21,12 @@ export const isValidAll = (value: string, type: string) => {
       break;
     case "password":
       result = value.length >= 6;
+      break;
+    case "confirm_password":
+      result = value === password;
+      break;
+    case "otp":
+      result = value.length === 6;
       break;
     case "matricNum":
       result = isValidMatric(value);
