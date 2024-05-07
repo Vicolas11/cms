@@ -15,7 +15,7 @@
     }
 
     .imgContainer {
-      @apply relative;
+      @apply hidden md:block relative;
       @apply w-[80vw] h-[20rem];
       @apply md:w-[50vw] md:h-[15rem];
     }

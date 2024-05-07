@@ -1,22 +1,14 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-interface IGlobalSlice {
-  showFooter: boolean;
-}
+interface IGlobalSlice {}
 
-const initialState: IGlobalSlice = {
-  showFooter: false,
-};
+const initialState: IGlobalSlice = {};
 
 const globalSlice = createSlice({
   name: "global",
   initialState,
-  reducers: {
-    setShowFooter: (state, action: PayloadAction<boolean>) => {
-      state.showFooter = action.payload;
-    },
-  },
+  reducers: {},
 });
 
-export const { setShowFooter } = globalSlice.actions;
+export const {} = globalSlice.actions;
 export default globalSlice.reducer;

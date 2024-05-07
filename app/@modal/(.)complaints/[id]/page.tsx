@@ -1,17 +1,21 @@
-import { DetailType } from "@/interfaces/generic.interface";
 import ViewModal from "@/components/Modals/ViewModal";
-import { tableInfo } from "@/data/table.data";
+import { Params } from "@/interfaces/props.interface";
+import { getAComplaint } from "@/data/complaint/getComplaints";
+import { getUser } from "@/data/user/getUser";
 import React from "react";
 
-export default function ComplaintModal({ params }: { params: { id: string } }) {
+export default async function ComplaintModal({ params }: Params) {
   const { id } = params;
-  const detail: DetailType | undefined = tableInfo.body.find(
-    (itm) => itm.id === id
-  );
+  const complaint = await getAComplaint(id);
+  const user = await getUser();
 
   return (
     <div>
-      <ViewModal showModal={id} detail={detail} />
+      <ViewModal
+        userId={user?.userId}
+        showModal={id}
+        detail={complaint?.data}
+      />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import { MdClose } from "react-icons/md";
 import { ReactNode } from "react";
 import { useRouter } from "next/navigation";
-import { modalAnimate } from "@/data/animation.data";
+import { modalAnimate } from "@/data/localData/animation.data";
 
 interface Props {
   showModal: string | null;
@@ -21,10 +21,7 @@ export default function ModalLayout({
   const router = useRouter();
 
   return (
-    <AnimatePresence
-      mode="wait"
-      onExitComplete={() => router.back()}
-    >
+    <AnimatePresence mode="wait" onExitComplete={() => router.back()}>
       {showModal && (
         <motion.div
           className={styles.backdrop}

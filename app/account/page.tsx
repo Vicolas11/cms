@@ -1,17 +1,20 @@
+import ComplaintLayout from "@/components/ComplaintLayout";
+import { getUserDTO } from "@/data/user/getUserDTO";
 import styles from "./account.module.scss";
 import Account from "@/components/Account";
-import ComplaintLayout from "@/components/ComplaintLayout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Account",
 };
 
-export default function AccountPage() {
+export default async function AccountPage() {
+  const userData = await getUserDTO();
+
   return (
     <ComplaintLayout>
       <div className={styles.container}>
-        <Account />
+        <Account userData={userData?.data} />
       </div>
     </ComplaintLayout>
   );

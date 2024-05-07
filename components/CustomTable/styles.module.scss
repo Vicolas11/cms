@@ -1,5 +1,5 @@
 .table {
-  @apply mb-6 mx-auto relative overflow-x-auto sm:rounded-lg w-full shadow-md;
+  @apply mb-6 mx-auto relative overflow-x-auto sm:rounded-lg w-full;
   @apply rounded-md bg-white mt-5;
 
   .empty_text {
@@ -60,7 +60,7 @@
       }
 
       tr.isRead {
-        @apply font-semibold text-gray-800;
+        @apply font-semibold text-gray-600;
       }
     }
   }

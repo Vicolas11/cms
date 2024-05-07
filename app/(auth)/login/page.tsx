@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function Login() {
+  
   return (
     <AuthLayout>
       <div className={styles.container}>

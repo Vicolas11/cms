@@ -11,6 +11,14 @@
     @apply text-gray-3 font-black text-xl;
   }
 
+  .forgetPassword {
+    @apply flex justify-end mt-[-10px] w-full;
+
+    p {
+      @apply text-sm text-gray-3 hover:text-primary font-medium w-fit cursor-pointer;
+    }
+  }
+
   .lineContainer {
     @apply text-center w-full relative;
 

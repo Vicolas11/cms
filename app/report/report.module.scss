@@ -1,6 +1,7 @@
 .container {
   @apply flex flex-col lg:flex-row flex-wrap justify-between;
-  @apply items-center w-full gap-y-6 lg:gap-y-0 my-4 lg:my-0;
+  @apply items-center w-full gap-y-6 lg:gap-y-0 my-8 lg:my-0;
+  @apply lg:absolute lg:top-1/2 lg:-translate-y-1/2 inset-x-0 mx-auto lg:w-11/12 xl:w-9/12;
 
   .features {
     @apply flex flex-col gap-y-3 text-gray-500 text-sm w-11/12 md:w-9/12 lg:w-1/2;

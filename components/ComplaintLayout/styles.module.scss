@@ -1,7 +1,7 @@
 .container {
-  @apply min-h-screen bg-bgColor flex flex-col;
+  @apply relative min-h-screen bg-bgColor flex flex-col;
 
   .content {
-    @apply px-3 lg:px-0 mx-auto w-11/12 xl:w-9/12;
+    @apply lg:px-0 mx-auto w-11/12 xl:w-9/12;
   }
 }

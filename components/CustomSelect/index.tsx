@@ -1,3 +1,4 @@
+"use client"
 import { ICustomSelect, IOpt } from "../../interfaces/props.interface";
 import { FiChevronUp, FiChevronDown } from "react-icons/fi";
 import { useEffect, useState, ComponentType } from "react";
@@ -78,9 +79,7 @@ export default function CustomSelect({
     <Select
       id="selectId"
       instanceId={"instanceId"}
-      options={
-        options && options.sort((a, b) => a.label.localeCompare(b.label))
-      }
+      options={options}
       components={{
         DropdownIndicator: DropdownIndicator as ComponentType<
           DropdownIndicatorProps<IOpt, boolean, GroupBase<IOpt>>

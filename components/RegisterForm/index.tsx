@@ -7,8 +7,8 @@ import {
 import { CustomInput } from "../common/CustomInput";
 import CustomButton from "../common/CustomButton";
 import styles from "./form.module.scss";
-import { useRouter } from "next/navigation";
-import React, { ChangeEvent, useState } from "react";
+import { redirect, useRouter } from "next/navigation";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import CustomSelect from "../CustomSelect";
 import { IOpt } from "@/interfaces/props.interface";
 import {
@@ -17,14 +17,19 @@ import {
   isValidFullName,
   isValidMatric,
 } from "@/utils/validinput.util";
-import { inputValArrFunc } from "@/data/components.data";
-import { selectArrFunc } from "@/data/selectopts.data";
+import { inputValArrFunc } from "@/data/localData/components.data";
+import { selectArrFunc } from "@/data/localData/selectopts.data";
+import { registerUserAction } from "@/services/auth/authActions";
+import { useFormState } from "react-dom";
+import toast from "react-hot-toast";
 
 export const RegisterForm = () => {
+  const [state, action] = useFormState(registerUserAction, { data: null });
   const [selectedOpt, setSelectedOpt] = useState<SelectOptType>({
     user: null,
     dept: null,
     facult: null,
+    gender: null,
   });
   const [inputValue, setInputValue] = useState<InputValueType>({
     email: "",
@@ -39,9 +44,10 @@ export const RegisterForm = () => {
     password: false,
   });
   const { email, matricNum, password, full_name } = inputValue;
-  const { user, dept, facult } = selectedOpt;
+  const { user, dept, facult, gender } = selectedOpt;
   const selectArr = selectArrFunc(user);
   const inputValArr = inputValArrFunc(user as IOpt);
+  const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
 
   const handleOnChange = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -68,25 +74,44 @@ export const RegisterForm = () => {
     !isValidMatric(matricNum) ||
     !isValidFullName(full_name) ||
     password.length < 6 ||
-    !dept;
+    !dept ||
+    !gender;
 
   const disableDE =
     !isValidEmail(email) ||
     !isValidFullName(full_name) ||
     password.length < 6 ||
-    !facult;
+    !facult ||
+    !gender;
 
   const disableHO =
     !isValidEmail(email) ||
     !isValidFullName(full_name) ||
     password.length < 6 ||
-    !dept;
+    !dept ||
+    !gender;
 
   const disableSA =
-    !isValidEmail(email) || !isValidFullName(full_name) || password.length < 6;
+    !isValidEmail(email) ||
+    !isValidFullName(full_name) ||
+    !gender ||
+    password.length < 6;
+
+  useEffect(() => {
+    if (state.data) {
+      // console.log("form =>", state.data);
+      if (state.data.status) {
+        toast.success(state.data.message);
+        formRef.current?.reset();
+        router.push("/login");
+      } else {
+        toast.error(state.data.message);
+      }
+    }
+  }, [state.data, router]);
 
   return (
-    <form className={styles.form}>
+    <form ref={formRef} className={styles.form} action={action}>
       <div className={styles.titleContainer}>
         <h4 className={styles.title}>Register</h4>
         <p>Please select user type and register</p>
@@ -96,7 +121,7 @@ export const RegisterForm = () => {
         (data, idx) =>
           data.show && (
             <CustomSelect
-              key={idx}              
+              key={idx}
               name={data.name}
               options={data.opts}
               placeholder={data.ph}
@@ -104,6 +129,19 @@ export const RegisterForm = () => {
             />
           )
       )}
+
+      <input type="hidden" name="role" defaultValue={user?.value} />
+      <input type="hidden" name="gender" defaultValue={user?.value} />
+      <input
+        type="hidden"
+        name="department"
+        defaultValue={`${selectedOpt.dept?.value}`}
+      />
+      <input
+        type="hidden"
+        name="faculty"
+        defaultValue={`${selectedOpt.facult?.value}`}
+      />
 
       {/* INPUTS */}
       {inputValArr.map(
@@ -120,13 +158,14 @@ export const RegisterForm = () => {
               value={inputValue[name]}
               onChange={handleOnChange}
               showPostIcon={type === "password"}
+              required
             />
           )
       )}
 
       <CustomButton
         title={"Register"}
-        onClick={() => pathName("features")}
+        type="submit"
         disabled={
           user?.value === "ST"
             ? disableST

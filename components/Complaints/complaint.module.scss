@@ -1,40 +1,49 @@
-.container {
-  @apply flex flex-col lg:flex-row flex-wrap justify-between;
-  @apply items-center w-full gap-y-4 lg:gap-y-0;
+.content {
+  @apply px-3 w-full lg:w-full mt-5 mb-6 mx-auto;
+  @apply relative sm:rounded-lg shadow-md;
+  @apply rounded-md bg-white;
 
-  .title {
-    @apply w-full lg:w-1/2 flex flex-col items-center justify-center;
-    @apply gap-y-2 px-3 md:px-0;
+  .header {
+    @apply flex flex-wrap gap-y-2 md:gap-y-0 justify-between items-center md:px-5 py-4;
 
-    .text {
-      @apply md:mt-0 text-gray-3 text-center;
-
-      h1 {
-        @apply text-primary font-bold text-2xl md:text-3xl;
-      }
-    }
-
-    .imgContainer {
-      @apply relative;
-      @apply w-[80vw] h-[20rem];
-      @apply md:w-[50vw] md:h-[15rem];
+    .title {
+      @apply font-semibold text-lg text-gray-600;
     }
   }
-
-  .form {
-    @apply hidden md:flex w-full lg:w-1/2;
-  }
-}
-
-.pending {
-  @apply bg-yellow-600 text-yellow-100 px-3 py-1 rounded-full;
-}
-
-.replied {
-  @apply bg-green-600 text-green-100 px-3 py-1 rounded-full;
 }
 
 .btnAction {
-  @apply text-gray-300 hover:text-gray-500 duration-300 transition-colors cursor-pointer;
+  @apply flex gap-x-2;
+
+  svg {
+    @apply text-base md:text-xl lg:text-lg cursor-pointer;
+  }
+
+  .btnView {
+    @apply hover:text-green-500;
+  }
+
+  .btnEdit {
+    @apply hover:text-blue-500;
+  }
+
+  .btnDelete {
+    @apply hover:text-red-500;
+  }
 }
 
+.checkIcon {
+  @apply text-red-600 flex justify-center items-center;
+}
+
+.pending {
+  @apply bg-yellow-600 text-xs text-yellow-100 px-3 py-1 rounded-full;
+}
+
+.replied {
+  @apply bg-green-600 text-xs text-green-100 px-3 py-1 rounded-full;
+}
+
+.btnAction {
+  @apply text-gray-300 duration-300 transition-colors cursor-pointer;
+}

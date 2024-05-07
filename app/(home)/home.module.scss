@@ -1,27 +1,25 @@
 .container {
-  @apply flex flex-col lg:flex-row flex-wrap justify-between;
-  @apply items-center w-full gap-y-4 lg:gap-y-0 my-4 lg:my-0;
+  @apply relative bg-[url('/schoolbg.jpg')] bg-cover bg-center h-screen w-full;
+  @apply flex justify-center items-center;
 
-  .title {
-    @apply w-full lg:w-1/2 flex flex-col items-center justify-center;
-    @apply gap-y-2 px-3 md:px-0;
-
-    .text {
-      @apply md:mt-0 text-gray-3 text-center;
-
-      h1 {
-        @apply text-primary font-bold text-2xl md:text-3xl;
-      }
-    }
-
-    .imgContainer {
-      @apply relative;
-      @apply w-[80vw] h-[20rem];
-      @apply md:w-[50vw] md:h-[15rem];
-    }
+  .content {
+    @apply absolute h-screen w-full bg-[rgba(0,0,0,.8)] z-[1];
   }
 
-  .form {
-    @apply flex w-full lg:w-1/2;
+  .title {
+    @apply absolute inset-0 mx-auto z-[2] text-white text-center gap-y-3;
+    @apply flex flex-col justify-center items-center px-5 md:px-0;
+
+    h1 {
+      @apply text-white font-bold text-2xl md:text-3xl lg:text-4xl;
+    }
+
+    p {
+      @apply font-medium;
+    }
+
+    .btn {
+      @apply mt-8 px-6 py-2;
+    }
   }
 }

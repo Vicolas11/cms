@@ -1,0 +1,45 @@
+.form {
+  @apply mx-auto w-11/12 lg:w-10/12 2xl:w-7/12 bg-white px-4 py-6;
+  @apply flex flex-col gap-y-6 shadow-md;
+  box-shadow: 1px 1px 10px rgba(#000000, 0.1);
+
+  .titleContainer {
+    @apply text-center;
+
+    p {
+      @apply px-7;
+    }
+  }
+
+  .title {
+    @apply text-gray-3 font-black text-xl;
+  }
+
+  .forgetPassword {
+    @apply flex justify-end mt-[-10px] w-full;
+
+    p {
+      @apply text-sm text-gray-3 hover:text-primary font-medium w-fit cursor-pointer;
+    }
+  }
+
+  .lineContainer {
+    @apply text-center w-full relative;
+
+    h3 {
+      @apply font-bold text-gray-400;
+      @apply before:border-t before:flex before:absolute before:border-gray-400;
+      @apply before:w-[45%] before:translate-y-[-50%] before:top-1/2 before:px-5;
+      @apply after:border-t after:flex after:absolute after:border-gray-400;
+      @apply after:w-[45%] after:translate-y-[-50%] after:top-1/2 after:right-0;
+    }
+  }
+
+  p {
+    @apply text-gray-400 font-medium text-base text-center;
+
+    button {
+      @apply font-extrabold text-gray-500 hover:text-gray-600;
+    }
+  }
+}

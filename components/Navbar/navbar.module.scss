@@ -7,7 +7,7 @@
     @apply px-3 lg:px-0 mx-auto lg:w-11/12 xl:w-9/12;
 
     .navLogo {
-      @apply relative max-w-24 w-24 h-7 ml-3 lg:m-0 cursor-pointer;
+      @apply relative max-w-24 w-20 md:w-24 h-6 md:h-7 ml-3 lg:m-0 cursor-pointer;
     }
 
     .btnMenu {
@@ -36,6 +36,10 @@
 
       .avatar {
         @apply flex items-center;
+
+        img {
+          @apply rounded-full;
+        }
       }
 
       .avatar svg:last-child {
@@ -100,6 +104,10 @@
 
         .avatar {
           @apply flex items-center;
+
+          img {
+            @apply rounded-full;
+          }
         }
 
         .avatar svg:last-child {
@@ -126,15 +134,159 @@
           @apply block w-full;
 
           .complaints {
-          @apply flex items-center gap-x-1;
+            @apply flex items-center gap-x-1;
 
-          .bubble {
-            @apply flex justify-center items-center h-5 w-5 p-1 bg-red-600 text-white;
-            @apply rounded-[100%] text-xs;
+            .bubble {
+              @apply flex justify-center items-center h-5 w-5 p-1 bg-red-600 text-white;
+              @apply rounded-[100%] text-xs;
+            }
           }
         }
+      }
+
+      li.active {
+        @apply bg-primary text-txtColor hover:bg-yellow-500;
+      }
+    }
+  }
+}
+
+.homeNavbar {
+  @apply py-4 absolute top-0 z-50 w-full bg-transparent;
+
+  .container {
+    @apply flex justify-between items-center;
+    @apply px-3 lg:px-0 mx-auto lg:w-11/12 xl:w-9/12;
+
+    .navLogo {
+      @apply relative max-w-24 w-20 md:w-24 h-6 md:h-7 ml-3 lg:m-0 cursor-pointer;
+    }
+
+    .btnMenu {
+      @apply md:hidden pr-3 lg:pr-0;
+
+      svg {
+        @apply text-4xl text-white cursor-pointer;
+      }
+    }
+
+    .mobile {
+      @apply flex md:hidden gap-x-2 items-center text-gray-4 hover:text-gray-4;
+      @apply cursor-pointer;
+
+      .username {
+        @apply text-right;
+
+        h4 {
+          @apply m-0 text-base font-semibold;
         }
-        
+
+        p {
+          @apply text-xs mt-[-3px] text-gray-3;
+        }
+      }
+
+      .avatar {
+        @apply flex items-center;
+
+        img {
+          @apply rounded-full;
+        }
+      }
+
+      .avatar svg:last-child {
+        @apply hover:text-gray-600 ml-[-3px];
+      }
+    }
+
+    .navLink {
+      @apply relative hidden md:flex items-center gap-x-6 pr-3 lg:pr-0;
+
+      li {
+        @apply hover:text-txtColor;
+        a {
+          @apply text-white/80 py-[2px] border-white hover:border-b hover:text-white;
+
+          .complaints {
+            @apply relative;
+          }
+        }
+      }
+
+      li.active {
+        a {
+          @apply border-primary border-b text-primary;
+          @apply hover:text-yellow-500 hover:border-yellow-500;
+        }
+      }
+
+      .lastLi {
+        @apply border border-white/80 rounded-[5px] px-4 py-1;
+        @apply hover:bg-white hover:text-black duration-150 transition-all;
+        a {
+          @apply text-white/80 hover:text-black hover:border-none;
+        }
+      }
+
+      .lastLi:hover > a {
+        @apply text-black;
+      }
+
+      .desktop {
+        @apply hidden md:flex gap-x-2 items-center text-gray-4 hover:text-gray-4;
+        @apply cursor-pointer;
+
+        .username {
+          @apply text-right;
+
+          h4 {
+            @apply m-0 text-base font-semibold;
+          }
+
+          p {
+            @apply text-xs mt-[-3px] text-gray-3;
+          }
+        }
+
+        .avatar {
+          @apply flex items-center;
+
+          img {
+            @apply rounded-full;
+          }
+        }
+
+        .avatar svg:last-child {
+          @apply hover:text-gray-600 ml-[-3px];
+        }
+      }
+
+      .logout {
+        @apply absolute bottom-0 mb-[-49px] md:mr-5 lg:mr-0 right-0 bg-white text-gray-4 px-4 py-2;
+        @apply hover:bg-primary hover:text-txtColor cursor-pointer shadow-sm;
+        @apply hidden md:flex gap-x-2 items-center;
+      }
+    }
+
+    .mobileNavLink {
+      @apply flex flex-col md:hidden absolute top-12 mt-2 left-0 w-full bg-white;
+
+      li {
+        @apply py-2 px-6 cursor-pointer border-t border-gray-200;
+        @apply text-gray-3 hover:bg-primary hover:text-txtColor;
+
+        a {
+          @apply block w-full;
+
+          .complaints {
+            @apply flex items-center gap-x-1;
+
+            .bubble {
+              @apply flex justify-center items-center h-5 w-5 p-1 bg-red-600 text-white;
+              @apply rounded-[100%] text-xs;
+            }
+          }
+        }
       }
 
       li.active {
