@@ -5,7 +5,7 @@ export interface SelectOptType {
   user: IOpt | null | undefined;
   dept: IOpt | null | undefined;
   facult: IOpt | null | undefined;
-  gender: IOpt;
+  gender: IOpt | null | undefined;
 }
 
 export interface SelectEditOptType {

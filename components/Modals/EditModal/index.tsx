@@ -4,7 +4,7 @@ import { GetFacultType } from "@/interfaces/generic.interface";
 import { ReportForm } from "@/components/ReportForm";
 import styles from "./styles.module.scss";
 import ModalLayout from "../ModalLayout";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface Props {
   showModal: string | null;

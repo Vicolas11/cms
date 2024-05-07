@@ -80,7 +80,7 @@ export interface ReportFormProps {
   studAffair?: GetFacultType;
   complaints?: ComplaintRespType;
   isEdit?: boolean;
-  setShow: Dispatch<SetStateAction<string | null>>;
+  setShow?: Dispatch<SetStateAction<string | null>>;
   editedData?: AComplaintResp | undefined | null;
 }
 

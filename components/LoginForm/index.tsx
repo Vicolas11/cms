@@ -1,11 +1,11 @@
 "use client";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
-import { loginUserAction } from "@/services/auth/authActions";
 import { inputValArrFunc } from "@/data/localData/components.data";
+import { loginUserAction } from "@/services/auth/authActions";
+import { usersOpts } from "@/data/localData/selectopts.data";
 import { redirect, useRouter } from "next/navigation";
 import { IOpt } from "@/interfaces/props.interface";
 import { CustomInput } from "../common/CustomInput";
-import { usersOpts } from "@/data/localData/selectopts.data";
 import CustomButton from "../common/CustomButton";
 import CustomSelect from "../CustomSelect";
 import { useFormState } from "react-dom";
@@ -14,12 +14,12 @@ import {
   InputIsValidType,
   InputValueType,
 } from "@/interfaces/generic.interface";
+import toast from "react-hot-toast";
 import {
   isValidAll,
   isValidEmail,
   isValidMatric,
 } from "@/utils/validinput.util";
-import toast from "react-hot-toast";
 
 export const LoginForm = () => {
   const [state, action] = useFormState(loginUserAction, { data: null });
@@ -92,7 +92,7 @@ export const LoginForm = () => {
         onSelect={onSelect}
       />
 
-      <input type="hidden" name="role" defaultValue={selectedOpt?.value} />
+      <input type="hidden" name="role" defaultValue={`${selectedOpt?.value}`} />
 
       {inputValArr.map(
         ({ type, ph, name, show, errMsg }, idx) =>

@@ -4,10 +4,10 @@ import {
   updateComplaintAction,
 } from "@/services/complaint/complaintActions";
 import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { selectReportArrFunc } from "@/data/localData/selectopts.data";
 import { IOpt, ReportFormProps } from "@/interfaces/props.interface";
 import { SelectEditOptType } from "@/interfaces/generic.interface";
 import { getDept, getFaculty } from "@/utils/getDeptFaculty.util";
-import { selectReportArrFunc } from "@/data/localData/selectopts.data";
 import { Role } from "@/interfaces/userData.interface";
 import { CustomInput } from "../common/CustomInput";
 import CustomButton from "../common/CustomButton";
@@ -68,7 +68,7 @@ export const ReportForm = ({
 
   const closeModal = useCallback(() => {
     router.replace(`/complaints`, { scroll: false });
-    setShow(null);
+    if (setShow) setShow(null);
   }, [router, setShow]);
 
   useEffect(() => {

@@ -130,8 +130,8 @@ export const RegisterForm = () => {
           )
       )}
 
-      <input type="hidden" name="role" defaultValue={user?.value} />
-      <input type="hidden" name="gender" defaultValue={user?.value} />
+      <input type="hidden" name="role" defaultValue={`${user?.value}`} />
+      <input type="hidden" name="gender" defaultValue={`${user?.value}`} />
       <input
         type="hidden"
         name="department"
