@@ -1,9 +1,15 @@
 import { IOpt } from "./props.interface";
+import { Role } from "./userData.interface";
 
 export interface SelectOptType {
-  user: IOpt | null;
-  dept: IOpt | null;
-  facult: IOpt | null;
+  user: IOpt | null | undefined;
+  dept: IOpt | null | undefined;
+  facult: IOpt | null | undefined;
+  gender: IOpt;
+}
+
+export interface SelectEditOptType {
+  [key: string]: IOpt | null | undefined;
 }
 
 export interface InputValueType {
@@ -17,3 +23,18 @@ export interface InputIsValidType {
 export interface DetailType {
   [key: string]: string | boolean;
 }
+
+export interface GetFaculty {
+  role?: Role;
+  perPage?: number;
+  currentPage?: number;
+}
+
+export interface GetFacultResp {
+  id: string;
+  name: string;
+  faculty: string | null;
+  department: string | null;
+}
+
+export type GetFacultType = GetFacultResp[] | null | undefined;
