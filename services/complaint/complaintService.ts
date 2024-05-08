@@ -1,8 +1,8 @@
 import { constant } from "@/configs/constant.config";
 import { envConfig } from "@/configs/env.config";
 import { verifyToken } from "@/utils/jwt.util";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
 const { prodURL, devURL } = constant;
 const { dev } = envConfig;
@@ -32,7 +32,12 @@ export async function makeComplaintService(userData: any) {
     return response.json();
   } catch (error) {
     console.error("Make Complaint Service Error:", error);
-    throw error;
+    return {
+      data: {
+        status: false,
+        message: "Make Complaint Service Error",
+      },
+    };
   }
 }
 
@@ -58,7 +63,12 @@ export async function deleteResponseService(id: string) {
     return response.json();
   } catch (error) {
     console.error("Delete Complaint Service Error:", error);
-    throw error;
+    return {
+      data: {
+        status: false,
+        message: "Delete Complaint Service Error",
+      },
+    };
   }
 }
 
@@ -90,7 +100,12 @@ export async function updateResponseService(userData: any) {
     return response.json();
   } catch (error) {
     console.error("Update Complaint Service Error:", error);
-    throw error;
+    return {
+      data: {
+        status: false,
+        message: "Update Complaint Service Error",
+      },
+    };
   }
 }
 
@@ -118,6 +133,11 @@ export async function makeResponseService(userData: any) {
     return response.json();
   } catch (error) {
     console.error("Make Response Service Error:", error);
-    throw error;
+    return {
+      data: {
+        status: false,
+        message: "Make Response Service Error",
+      },
+    };
   }
 }
