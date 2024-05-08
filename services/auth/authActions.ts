@@ -1,29 +1,25 @@
 "use server";
-import { envConfig } from "@/configs/env.config";
-import {
-  changePasswordService,
-  forgetPasswordService,
-  loginUserService,
-  logoutUserService,
-  registerUserService,
-  resendForgetPasswordService,
-  resetPasswordService,
-  updateUserService,
-} from "./authService";
+import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { userRoleType } from "@/utils/userRole.util";
-import { constant } from "@/configs/constant.config";
 import { getUser } from "@/data/user/getUser";
 import { redirect } from "next/navigation";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
+import {
+  resendForgetPasswordService,
+  changePasswordService,
+  forgetPasswordService,
+  resetPasswordService,
+  registerUserService,
+  logoutUserService,
+  loginUserService,
+  updateUserService,
+} from "./authService";
 
-const { dev } = envConfig;
-const { prodDomain } = constant;
-
-const config = {
+const config: Partial<ResponseCookie> | undefined = {
   maxAge: 60 * 60 * 24 * 7, // 1 week
   path: "/",
-  domain: dev ? "localhost" : prodDomain,
+  sameSite: "none",
   httpOnly: true,
   secure: true,
 };
@@ -143,8 +139,6 @@ export async function loginUserAction(
     cookies().set("token", responseData.data.accessToken, config);
     cookies().set("refreshToken", responseData.data.refreshToken, config);
   }
-  // redirect("/report");
-  // console.log("RES => ", responseData);
 
   return {
     data: {
