@@ -34,8 +34,13 @@ export async function registerUserService(userData: any) {
 
     return response.json();
   } catch (error) {
-    console.error("Registration Service Error:", error);
-    throw error;
+    console.log("Registration Service Error:", error);
+    return {
+      data: {
+        status: false,
+        message: "Registration Service Error",
+      },
+    };
   }
 }
 
@@ -60,9 +65,14 @@ export async function loginUserService(
     });
 
     return response.json();
-  } catch (error) {
-    console.error("Login Service Error:", error);
-    throw error;
+  } catch (error: any) {
+    console.log("Login Service Error:", error);
+    return {
+      data: {
+        status: false,
+        message: "Login Service Error",
+      },
+    };
   }
 }
 
@@ -85,7 +95,12 @@ export async function logoutUserService() {
     return response.json();
   } catch (error) {
     console.error("Logout Service Error:", error);
-    throw error;
+    return {
+      data: {
+        status: false,
+        message: "Logout Service Error",
+      },
+    };
   }
 }
 
@@ -114,7 +129,12 @@ export async function changePasswordService(userData: ChangePasswordParams) {
     return response.json();
   } catch (error) {
     console.error("Change Password Service Error:", error);
-    throw error;
+    return {
+      data: {
+        status: false,
+        message: "Change password Service Error",
+      },
+    };
   }
 }
 
@@ -139,7 +159,12 @@ export async function forgetPasswordService(userData: ForgetPasswordParams) {
     return response.json();
   } catch (error) {
     console.error("Forget Password Service Error:", error);
-    throw error;
+    return {
+      data: {
+        status: false,
+        message: "Forget password Service Error",
+      },
+    };
   }
 }
 
@@ -166,7 +191,12 @@ export async function resendForgetPasswordService(
     return response.json();
   } catch (error) {
     console.error("Forget Password Service Error:", error);
-    throw error;
+    return {
+      data: {
+        status: false,
+        message: "Forget password Service Error",
+      },
+    };
   }
 }
 
@@ -191,7 +221,12 @@ export async function resetPasswordService(userData: ResetPasswordParams) {
     return response.json();
   } catch (error) {
     console.error("Reset Password Service Error:", error);
-    throw error;
+    return {
+      data: {
+        status: false,
+        message: "Reset password Service Error",
+      },
+    };
   }
 }
 
@@ -219,6 +254,11 @@ export async function updateUserService(userData: any) {
     return response.json();
   } catch (error) {
     console.error("Update User Service Error:", error);
-    throw error;
+    return {
+      data: {
+        status: false,
+        message: "Update user Service Error",
+      },
+    };
   }
 }

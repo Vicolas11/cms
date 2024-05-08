@@ -10,12 +10,12 @@ import {
   resetPasswordService,
   updateUserService,
 } from "./authService";
-import { cookies } from "next/headers";
 import { userRoleType } from "@/utils/userRole.util";
 import { constant } from "@/configs/constant.config";
 import { getUser } from "@/data/user/getUser";
 import { redirect } from "next/navigation";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
 
 const { dev } = envConfig;
 const { prodDomain } = constant;

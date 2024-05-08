@@ -1,4 +1,4 @@
-const ENV = process.env.NODE_ENV || "development";
+const ENV = process.env.NEXT_PUBLIC_NODE_ENV || "development";
 
 export const envConfig = {
   test: ENV === "test",

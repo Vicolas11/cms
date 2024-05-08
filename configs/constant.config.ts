@@ -1,5 +1,5 @@
 export const constant = {
-  prodDomain: process.env.PROD_DOMAIN,
-  prodURL: process.env.PROD_BASE_URL,
-  devURL: process.env.DEV_BASE_URL,  
+  prodDomain: process.env.NEXT_PUBLIC_PROD_DOMAIN,
+  prodURL: process.env.NEXT_PUBLIC_PROD_BASE_URL,
+  devURL: process.env.NEXT_PUBLIC_DEV_BASE_URL,  
 };
