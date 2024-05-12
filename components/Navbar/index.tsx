@@ -1,10 +1,10 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { RiArrowDropDownFill, RiArrowDropUpFill } from "react-icons/ri";
+import { navbarAnimate } from "@/data/localData/animation.data";
 import { logoutUserAction } from "@/services/auth/authActions";
 import { NavProps } from "@/interfaces/props.interface";
 import { AnimatePresence, motion } from "framer-motion";
-import { navbarAnimate } from "@/data/localData/animation.data";
 import { Suspense, useEffect, useState } from "react";
 import { shrinkTxt } from "@/utils/shrink.utils";
 import { bubbleText } from "@/utils/bubble.util";
@@ -89,6 +89,7 @@ export const Navbar = ({ token, bubble, data, isHome = false }: NavProps) => {
   );
 
   const handleLogout = async () => {
+    route.replace("/");
     await logoutUserAction();
   };
 
