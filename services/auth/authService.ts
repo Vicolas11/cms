@@ -47,7 +47,7 @@ export async function registerUserService(userData: any) {
 export async function loginUserService(
   userData: LoginStudParams | LoginUserParams
 ) {
-  const url = new URL("api/auth/login", baseURL);
+  const url = new URL("/api/auth/login", baseURL);
   const isEmpty = Object.values(userData).some((val) => val === "");
 
   if (isEmpty) {

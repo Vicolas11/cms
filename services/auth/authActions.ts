@@ -94,11 +94,11 @@ export async function registerUserAction(_: any, formData: FormData) {
     };
   }
 
-  if (responseData.error || !responseData.status) {
+  if (responseData?.error || !responseData?.status) {
     return {
       data: {
         status: false,
-        message: responseData.message,
+        message: responseData?.message,
       },
     };
   }
@@ -135,9 +135,9 @@ export async function loginUserAction(
     role === "ST" ? getFormStudData : getFormData
   );
 
-  if (responseData.data) {
-    cookies().set("token", responseData.data.accessToken, config);
-    cookies().set("refreshToken", responseData.data.refreshToken, config);
+  if (responseData?.data) {
+    cookies().set("token", responseData?.data?.accessToken, config);
+    cookies().set("refreshToken", responseData?.data?.refreshToken, config);
   }
 
   return {
@@ -160,11 +160,11 @@ export async function logoutUserAction() {
     };
   }
 
-  if (!responseData.status) {
+  if (!responseData?.status) {
     return {
       data: {
         status: false,
-        code: responseData.code,
+        code: responseData?.code,
         message: "Invalid Token",
       },
     };
@@ -193,7 +193,7 @@ export async function changePasswordAction(
 
   const responseData = await changePasswordService(getFormData);
 
-  if (responseData.code === 401) {
+  if (responseData?.code === 401) {
     cookies().delete("token");
     cookies().delete("refreshToken");
     redirect("/login");
@@ -216,9 +216,7 @@ export async function forgetPasswordAction(
 
   const responseData = await forgetPasswordService(getFormData);
 
-  // redirect("/report");
-  console.log("RES => ", responseData);
-  if (responseData.code === 500) {
+  if (responseData?.code === 500) {
     return {
       data: {
         ...responseData,
@@ -244,7 +242,7 @@ export async function resendForgetPasswordAction(
 
   const responseData = await resendForgetPasswordService(getFormData);
 
-  if (responseData.code === 500) {
+  if (responseData?.code === 500) {
     return {
       data: {
         ...responseData,
@@ -272,9 +270,6 @@ export async function resetPasswordAction(
 
   const responseData = await resetPasswordService(getFormData);
 
-  // redirect("/report");
-  console.log("RES => ", responseData);
-
   return {
     data: {
       ...responseData,
@@ -299,7 +294,7 @@ export async function updateUserAction(
 
   const responseData = await updateUserService(getFormData);
 
-  if (responseData.code === 401) {
+  if (responseData?.code === 401) {
     cookies().delete("token");
     cookies().delete("refreshToken");
     redirect("/login");
